@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Time-App</string>
+    <string name="btn">Enregistrer</string>
+    <string name="saisir">Ajoutez votre activité</string>
+    <string name="choisirD">Choisissez la date</string>
+    <string name="choisirT">Choisissez le temps</string>
+    <string name="son">son</string>
+    <string name="Répétition">Répétition</string>
+    <string name="Vibreur">Vibreur</string>
+    <string name="Durée">Durée de sonnerie</string>
+    <string-array name="spinner_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>
