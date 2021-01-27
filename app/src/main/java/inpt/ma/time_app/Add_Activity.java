@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.View;
@@ -28,21 +29,66 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Add_Activity extends AppCompatActivity {
-    private static final int MY_PERMISSIONS_CAMERA =0 ;
+
     //constante
+    //cam
     private static final int RETOUR_PRENDRE_PHOTO =1;
+    private static final int MY_PERMISSIONS_CAMERA =0 ;
+    //gallery
+    private static final int IMAGE_PICK_CODE = 1000;
+    private static final int PERMISSION_CODE =1001;
 
     //proprietes
+    //cam
     private ImageView cam;
     private ImageView imgAffichePhoto;
     private String photoPath = null;
+    //gallery
+    ImageView gallery;
+    ImageView mchooseBtn;
+
     //Request for camera permission
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_);
         initActivity();
+        //views
+        gallery = findViewById(R.id.image_view);
+        mchooseBtn = findViewById(R.id.choose_image_btn);
+
+        //handle boutton click
+        mchooseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //check runtimr permission
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED){
+                        //permission not granted ,request it.
+                        String[] permissions= {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        //show popup for runtimepermission
+                        requestPermissions(permissions, PERMISSION_CODE);
+                    }
+                    else {
+                        //permission already granted
+                        PickImageFromGallery();
+                    }
+                }
+                else {
+                    //system os is less then marshmallow
+                    PickImageFromGallery();
+                }
+            }
+        });
     }
+    private void  PickImageFromGallery(){
+        //intent to pick image
+        Intent intent =new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_CODE);
+    }
+
     public void imgClick(View v){
         Toast.makeText(this,"Hello",Toast.LENGTH_SHORT).show();
     }
@@ -121,6 +167,11 @@ public class Add_Activity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
+        //handle result on picked image
+        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            //set image to image view
+            gallery.setImageURI(data.getData());
+        }
         //verifie ,le bon code de retour etl'etat du retour ok
         if(requestCode==RETOUR_PRENDRE_PHOTO && resultCode==RESULT_OK){
             //recuperer l'image
@@ -142,6 +193,17 @@ public class Add_Activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "DEMANDE REFUSE", Toast.LENGTH_LONG).show();
                     return;
+                }
+            }
+            case PERMISSION_CODE:{
+                if(grantResults.length>0 && grantResults[0]==
+                        PackageManager.PERMISSION_GRANTED){
+                    //permission was granted
+                    PickImageFromGallery();
+                }
+                else {
+                    //permission was denied
+                    Toast.makeText(this, "Permission denied :(",Toast.LENGTH_SHORT).show();
                 }
             }
         }
