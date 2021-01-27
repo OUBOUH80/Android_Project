@@ -25,4 +25,9 @@
     <color name="blue7">#2E86D5</color>
     <color name="blue8">#2E92DA</color>
     <color name="blue9">#2EA4E1</color>
+
+
+    <color name="triangle">#C6E9F2</color>
+    <color name="gris">#879aab</color>
+    <color name="btn">#C7DFDE</color>
 </resources>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Add_Activity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Layout2"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        app:cardBackgroundColor="@color/triangle">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/saisir"
+                    android:textColor="@color/gris"
+                    android:textSize="18dp">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text1"
+                    android:layout_marginTop="0dp">
+
+                    <ImageButton
+                        android:id="@+id/cam"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/text1"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="imgClick"
+                        android:src="@drawable/cam"></ImageButton>
+
+                    <ImageButton
+                        android:id="@+id/imgclick2"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/text1"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="imgClick"
+                        android:src="@drawable/galerie"></ImageButton>
+
+                    <ImageButton
+                        android:id="@+id/imgclick4"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/text1"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="imgClick"
+                        android:src="@drawable/microphone"></ImageButton>
+
+                    <ImageButton
+                        android:id="@+id/imgclick3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="7dp"
+                        android:background="@android:color/transparent"
+                        android:onClick="imgClick"
+                        android:src="@drawable/ecrire"></ImageButton>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imgAffichePhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_launcher_foreground" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Layout3"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/Layout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        app:cardBackgroundColor="@color/triangle">
+
+
+        <LinearLayout
+            android:id="@+id/datelayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imgclick6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:background="@android:color/transparent"
+                android:onClick="imgClick"
+                android:src="@drawable/date3">
+
+            </ImageButton>
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="17dp"
+                android:text="@string/choisirD"
+                android:textColor="@color/gris"
+                android:textSize="18dp">
+
+            </TextView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/timelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/datelayout"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imgclick7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:background="@android:color/transparent"
+                android:onClick="imgClick"
+                android:src="@drawable/heure">
+
+            </ImageButton>
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="17dp"
+                android:text="@string/choisirT"
+                android:textColor="@color/gris"
+                android:textSize="18dp">
+
+            </TextView>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Layout4"
+        android:layout_width="300dp"
+        android:layout_height="180dp"
+        android:layout_below="@+id/Layout3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        app:cardBackgroundColor="@color/triangle">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/text4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="@string/son"
+                    android:textColor="@color/gris"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="180dp"
+                    android:entries="@array/spinner_array">
+
+                </androidx.appcompat.widget.AppCompatSpinner>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/text5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="@string/Répétition"
+                    android:textColor="@color/gris"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="129dp"
+                    android:entries="@array/spinner_array">
+
+                </androidx.appcompat.widget.AppCompatSpinner>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/text6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="@string/Vibreur"
+                    android:textColor="@color/gris"
+                    android:textSize="18dp">
+
+                </TextView>
+
+                <Switch
+                    android:layout_width="45dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="155dp"
+                    android:entries="@array/spinner_array">
+
+                </Switch>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/text7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="7dp"
+                    android:text="@string/Durée"
+                    android:textColor="@color/gris"
+                    android:textSize="18dp">
+
+                </TextView>
+
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="70dp"
+                    android:entries="@array/spinner_array">
+
+                </androidx.appcompat.widget.AppCompatSpinner>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/Layout4"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="@string/btn"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/btn">
+
+    </Button>
+
+
+</RelativeLayout>

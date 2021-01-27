@@ -40,7 +40,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="15dp"
-                    android:backgroundTint="@color/blue3">
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                                 android:layout_weight="1"
                                 android:text="REGIME"
                                 android:textAlignment="center"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -102,7 +102,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="15dp"
-                    android:backgroundTint="@color/blue_btn">
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -140,7 +140,7 @@
                                 android:layout_weight="1"
                                 android:text="LECTURE"
                                 android:textAlignment="center"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -169,7 +169,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="15dp"
-                    android:backgroundTint="@color/blue4">
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -207,7 +207,7 @@
                                 android:layout_weight="1"
                                 android:text="SPORT"
                                 android:textAlignment="center"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -230,7 +230,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="15dp"
-                    android:backgroundTint="@color/blue5">
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -268,7 +268,7 @@
                                 android:layout_weight="1"
                                 android:text="TRAVAIL"
                                 android:textAlignment="center"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -297,7 +297,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="15dp"
-                    android:backgroundTint="@color/blue6">
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -335,7 +335,7 @@
                                 android:layout_weight="1"
                                 android:text="FAMILLE"
                                 android:textAlignment="center"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -357,7 +357,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="15dp"
-                    android:backgroundTint="@color/blue8">
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -395,7 +395,7 @@
                                 android:layout_weight="1"
                                 android:text="ETUDES"
                                 android:textAlignment="center"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -424,7 +424,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="15dp"
-                    android:backgroundTint="@color/blue9">
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -462,7 +462,7 @@
                                 android:layout_weight="1"
                                 android:text="BENEVOLAT"
                                 android:textAlignment="center"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -484,7 +484,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="15dp"
-                    android:backgroundTint="@color/blue9">
+                    android:backgroundTint="@color/white">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -522,7 +522,7 @@
                                 android:layout_weight="1"
                                 android:text="MEDICAMENT"
                                 android:textAlignment="center"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -545,7 +545,7 @@
                 android:layout_gravity="center_horizontal|center_vertical"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="15dp"
-                android:backgroundTint="@color/blue">
+                android:backgroundTint="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -583,7 +583,7 @@
                             android:layout_weight="1"
                             android:text="AUTRE"
                             android:textAlignment="center"
-                            android:textColor="@android:color/white"
+                            android:textColor="@android:color/black"
                             android:textSize="18sp"
                             android:textStyle="bold"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
