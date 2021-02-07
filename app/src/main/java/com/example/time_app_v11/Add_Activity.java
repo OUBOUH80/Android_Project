@@ -1,6 +1,7 @@
 package com.example.time_app_v11;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,15 +12,19 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -29,12 +34,14 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Add_Activity extends AppCompatActivity {
 
     // tkhrbi9_1 d record
     private LinearLayout layout_micro;
     private ImageView micro;
+
 
     /// tkhrbi9_2 d Record
 
@@ -49,7 +56,16 @@ public class Add_Activity extends AppCompatActivity {
     // Requesting permission to RECORD_AUDIO
     private boolean permissionToRecordAccepted = false;
     private String[] permissions = {Manifest.permission.RECORD_AUDIO};
+    private  String recordPermission=  Manifest.permission.RECORD_AUDIO;
 
+
+    // Record
+    private boolean isRecording = false;
+    private String recordFile;
+    private MediaRecorder mediaRecorder;
+    private  int PERMISSION_CODE1= 21;
+    private Chronometer chrono;
+    private TextView Annuler;
 
     //constante
     //cam
@@ -68,52 +84,8 @@ public class Add_Activity extends AppCompatActivity {
     ImageView gallery;
     ImageView mchooseBtn;
 
-    //Request for camera permission
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_);
-        initActivity();
-        //Record to the external cache directory for visibility
-
-        //views
-        gallery = findViewById(R.id.image_view);
-        mchooseBtn = findViewById(R.id.choose_image_btn);
-
-        //handle boutton click
-        mchooseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //check runtimr permission
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                            == PackageManager.PERMISSION_DENIED) {
-                        //permission not granted ,request it.
-                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                        //show popup for runtimepermission
-                        requestPermissions(permissions, PERMISSION_CODE);
-                    } else {
-                        //permission already granted
-                        PickImageFromGallery();
-                    }
-                } else {
-                    //system os is less then marshmallow
-                    PickImageFromGallery();
-                }
-            }
-        });
-    }
-
-    private void PickImageFromGallery() {
-        //intent to pick image
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, IMAGE_PICK_CODE);
-    }
-
-
     ////////////////////////////////Record/////////////////////////////////////////////////////
-
+/*
     private void startRecording() {
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -148,43 +120,49 @@ public class Add_Activity extends AppCompatActivity {
     boolean mStartRecording = true;
 
     public void ClickRecord(View v) {
-   ///////////// ppermission d record ///////
+        ///////////// ppermission d record ///////
         fileName = getExternalCacheDir().getAbsolutePath();
         fileName += "/audiorecordtest.3gp";
 
-        ActivityCompat.requestPermissions(this, permissions, REQUEST_RECORD_AUDIO_PERMISSION);
 
 
-        onRecord(mStartRecording);
+
+        if(checkPermissions()){
         if (mStartRecording) {
+
+
             Toast.makeText(this," Start Recording",Toast.LENGTH_SHORT).show();
+            onRecord(mStartRecording);
         } else {
-            Toast.makeText(this," End Recording",Toast.LENGTH_SHORT).show();
-            layout_micro= (LinearLayout) findViewById(R.id.layout_mic);
-            layout_micro.setBackgroundDrawable(getResources().getDrawable(R.color.white));
-            micro=(ImageButton) findViewById(R.id.play);
-            micro.setImageResource(R.drawable.play);
-        }
+
+                Toast.makeText(this," End Recording",Toast.LENGTH_SHORT).show();
+                layout_micro= (LinearLayout) findViewById(R.id.layout_mic);
+                layout_micro.setBackgroundDrawable(getResources().getDrawable(R.color.white));
+                micro=(ImageButton) findViewById(R.id.play);
+                micro.setImageResource(R.drawable.play);
+
+        }}
+
         mStartRecording = !mStartRecording;
     }
-
+*/
 
 /////////////////////////////////////Playing Record ////////////////////////////////////////////////////////
 
 
 
-
+/*
 
     private void startPlaying() {
-    player = new MediaPlayer();
-    try {
-        player.setDataSource(fileName);
-        player.prepare();
-        player.start();
-    } catch (IOException e) {
-        Log.e(LOG_TAG, "prepare() failed");
+        player = new MediaPlayer();
+        try {
+            player.setDataSource(fileName);
+            player.prepare();
+            player.start();
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "prepare() failed");
+        }
     }
-}
 
 
     private void onPlay(boolean start) {
@@ -217,6 +195,144 @@ public class Add_Activity extends AppCompatActivity {
         }
         mStartPlaying = !mStartPlaying;
     }
+    private boolean checkPermissions(){
+        if(ActivityCompat.checkSelfPermission(getApplicationContext(),recordPermission)== PackageManager.PERMISSION_GRANTED){
+            return true;
+        }else{
+            ActivityCompat.requestPermissions(this, new String[]{recordPermission},PERMISSION_CODE);
+            return false;
+        }
+    }
+
+
+*/
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void ClickRecord(View v) {
+        if(isRecording){
+            //stop recording
+            stopRecording();
+            Toast.makeText(getApplicationContext(),"recording is stoped",Toast.LENGTH_SHORT).show();
+            isRecording= false;
+        }else{
+            if(checkPermissions()){
+                startRecording();
+                Toast.makeText(getApplicationContext(),"recording is started",Toast.LENGTH_SHORT).show();
+                isRecording= true;
+            }
+        } }
+
+    @SuppressLint("ResourceAsColor")
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void startRecording() {
+        // bach mayb9ach timer khdam f l background fach kankono hbsna record kanzido hadi
+        layout_micro= (LinearLayout) findViewById(R.id.layout_mic);
+        layout_micro.setBackgroundDrawable(getResources().getDrawable(R.drawable.rounded));
+        Annuler.setTextColor(R.color.blue9);
+        chrono.setTextColor(R.color.black);
+        chrono.setBase(SystemClock.elapsedRealtime());
+        chrono.start();
+
+        String recordPath= this.getExternalFilesDir("/").getAbsolutePath();
+        android.icu.text.SimpleDateFormat formatter= new android.icu.text.SimpleDateFormat("yyyy_MM_dd_hh_mm_ss", Locale.FRANCE);
+        Date now = new Date();
+        recordFile="Record"+formatter.format(now)+".3gp";
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setOutputFile(recordPath+"/"+recordFile);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+
+        try {
+            mediaRecorder.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mediaRecorder.start();
+    }
+
+    private void stopRecording() {
+        chrono.stop();
+        mediaRecorder.stop();
+        mediaRecorder.release();
+        mediaRecorder=null;
+
+    }
+
+    private boolean checkPermissions(){
+        int a=1;
+        if(ActivityCompat.checkSelfPermission(getApplicationContext(),recordPermission)== PackageManager.PERMISSION_GRANTED){
+            return true;
+        }else{
+            ActivityCompat.requestPermissions(this, new String[]{recordPermission},PERMISSION_CODE1);
+            return false;
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////Dial Khaoula   ET Rajae///////////////////////////////////////////////
+
+
+    //Request for camera permission
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_);
+        initActivity();
+        //Record to the external cache directory for visibility
+
+        //views
+        gallery = findViewById(R.id.image_view);
+        mchooseBtn = findViewById(R.id.choose_image_btn);
+        chrono= (Chronometer)findViewById(R.id.record_timer);
+        Annuler =(TextView) findViewById(R.id.annuler);
+
+        //handle boutton click
+        mchooseBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //check runtimr permission
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+                    if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED) {
+                        //permission not granted ,request it.
+                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        //show popup for runtimepermission
+                        requestPermissions(permissions, PERMISSION_CODE);
+                    } else {
+                        //permission already granted
+                        PickImageFromGallery();
+                    }
+                } else {
+                    //system os is less then marshmallow
+                    PickImageFromGallery();
+                }
+            }
+        });
+    }
+
+    private void PickImageFromGallery() {
+        //intent to pick image
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_CODE);
+    }
+
+
+
 
     /**
      * initialisation de l'activity
